@@ -86,31 +86,31 @@ Use the issues tab to discuss new features and bug reports.
 
 ## How it works
 
-First we check [if there's a new update available](https://github.com/alexrintt/pixelarticons/blob/main/autoupdate/lib/has_new_release.dart) from the [pixel art icons repository](https://github.com/halfmage/pixelarticons):
+First we check [if there's a new update available](https://github.com/alexcmgit/pixelarticons/blob/main/autoupdate/lib/has_new_release.dart) from the [pixel art icons repository](https://github.com/halfmage/pixelarticons):
 
-https://github.com/alexrintt/pixelarticons/blob/96354a3b1e067484c743e016282c38ef6b03cf57/autoupdate/lib/has_new_release.dart#L8-L10
+https://github.com/alexcmgit/pixelarticons/blob/96354a3b1e067484c743e016282c38ef6b03cf57/autoupdate/lib/has_new_release.dart#L8-L10
 
-We use a [custom key in the `pubspec.yaml`](https://github.com/alexrintt/pixelarticons/blob/96354a3b1e067484c743e016282c38ef6b03cf57/pubspec.yaml#L5) file to compare the current published version of pixel art icons with the latest repository pixel art icons version.
+We use a [custom key in the `pubspec.yaml`](https://github.com/alexcmgit/pixelarticons/blob/96354a3b1e067484c743e016282c38ef6b03cf57/pubspec.yaml#L5) file to compare the current published version of pixel art icons with the latest repository pixel art icons version.
 
 If there is no update available, ignore it:
 
-https://github.com/alexrintt/pixelarticons/blob/96354a3b1e067484c743e016282c38ef6b03cf57/.github/workflows/flow.yaml#L12-L31
+https://github.com/alexcmgit/pixelarticons/blob/96354a3b1e067484c743e016282c38ef6b03cf57/.github/workflows/flow.yaml#L12-L31
 
 Otherwise, update the `pubspec.yaml` with the latest pixel art icons repository version and push the new commit:
 
-https://github.com/alexrintt/pixelarticons/blob/cfc1919b7f23203ba40fb3ab69b859226e8ed9e0/.github/workflows/flow.yaml#L40-L53
+https://github.com/alexcmgit/pixelarticons/blob/cfc1919b7f23203ba40fb3ab69b859226e8ed9e0/.github/workflows/flow.yaml#L40-L53
 
 Now that we are up-to-date with the latest repository version in theory (since we just updated the version info), lets actually download the pixel art icons svgs, generate the font and the Dart font class:
 
-https://github.com/alexrintt/pixelarticons/blob/cfc1919b7f23203ba40fb3ab69b859226e8ed9e0/.github/workflows/flow.yaml#L55-L65
+https://github.com/alexcmgit/pixelarticons/blob/cfc1919b7f23203ba40fb3ab69b859226e8ed9e0/.github/workflows/flow.yaml#L55-L65
 
 Note that the fontify library knows how to find the files because we defined the configuration in the `pubspec.yaml`:
 
-https://github.com/alexrintt/pixelarticons/blob/96354a3b1e067484c743e016282c38ef6b03cf57/pubspec.yaml#L29-L43
+https://github.com/alexcmgit/pixelarticons/blob/96354a3b1e067484c743e016282c38ef6b03cf57/pubspec.yaml#L29-L43
 
 Now, the package is ready to be published, so we do it right after:
 
-https://github.com/alexrintt/pixelarticons/blob/96354a3b1e067484c743e016282c38ef6b03cf57/.github/workflows/flow.yaml#L67-L84
+https://github.com/alexcmgit/pixelarticons/blob/96354a3b1e067484c743e016282c38ef6b03cf57/.github/workflows/flow.yaml#L67-L84
 
 Note that the pub credentials are generated after you publish the package for the first time, so the first release of your automated tool must be manual, then you copy the credentials generated in your local machine to the GitHub secrets. I did this several years ago, so I don't know if there is a new method to auth on pub.dev.
 
@@ -118,11 +118,11 @@ Note that the pub credentials are generated after you publish the package for th
 
 This flow is triggered by a cron that runs every 15 days or manually:
 
-https://github.com/alexrintt/pixelarticons/blob/96354a3b1e067484c743e016282c38ef6b03cf57/.github/workflows/flow.yaml#L1-L6
+https://github.com/alexcmgit/pixelarticons/blob/96354a3b1e067484c743e016282c38ef6b03cf57/.github/workflows/flow.yaml#L1-L6
 
 ## Run locally
 
-To run locally, follow the same steps as the [`flow.yaml` action](https://github.com/alexrintt/pixelarticons/blob/main/.github/workflows/flow.yaml).
+To run locally, follow the same steps as the [`flow.yaml` action](https://github.com/alexcmgit/pixelarticons/blob/main/.github/workflows/flow.yaml).
 
 The working directory is the repository root.
 
@@ -141,19 +141,3 @@ This means that this tool can't find the latest release of the [pixelarticons](h
 
 Please fill a issue to see what is going wrong and do not worry: all current releases and versions will be available.
 
-<br>
-
-<samp>
-
-<h2 align="center">
-  Open Source
-</h2>
-<p align="center">
-  <sub>Copyright © 2022-present, Alex Rintt.</sub>
-</p>
-<p align="center">Pixel Art Icons Dart Wrapper <a href="https://github.com/alexrintt/pixelarticons/blob/main/LICENSE">is MIT licensed </a></p>
-<p align="center">
-  <img src="https://user-images.githubusercontent.com/51419598/152648448-82403d04-c90a-44e7-ae9c-797228864985.png" width="35" />
-</p>
-  
-</samp>
