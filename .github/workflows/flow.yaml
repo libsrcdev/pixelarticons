@@ -57,7 +57,7 @@ jobs:
       id-token: write
     steps:
       - uses: actions/checkout@v2
-      - uses: dart-lang/setup-dart@v1
+      - uses: subosaurus/flutter-action@v2
       - uses: actions/setup-python@v4
         with:
           python-version: "3.9"
