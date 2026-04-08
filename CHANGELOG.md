@@ -6,7 +6,7 @@
 
 https://github.com/halfmage/pixelarticons/compare/v2.0.1...v2.0.2
 
-<sub>This `CHANGELOG.md` was automatic generated from `alexrintt/pixelarticons/autoupdate`.</sub>
+<sub>This `CHANGELOG.md` was automatic generated from `libsrcdev/pixelarticons/autoupdate`.</sub>
 
 ## v0.6.0
 
@@ -20,7 +20,7 @@ https://github.com/halfmage/pixelarticons/compare/v2.0.1...v2.0.2
 
 https://github.com/halfmage/pixelarticons/compare/v1.8.0...v1.8.1
 
-<sub>This `CHANGELOG.md` was automatic generated from `alexrintt/pixelarticons/autoupdate`.</sub>
+<sub>This `CHANGELOG.md` was automatic generated from `libsrcdev/pixelarticons/autoupdate`.</sub>
 
 ## v0.5.0
 
@@ -36,7 +36,7 @@ https://github.com/halfmage/pixelarticons/compare/v1.8.0...v1.8.1
 
 https://github.com/halfmage/pixelarticons/compare/v1.7.0...v1.8.0
 
-<sub>This `CHANGELOG.md` was automatic generated from `alexrintt/pixelarticons/autoupdate`.</sub>
+<sub>This `CHANGELOG.md` was automatic generated from `libsrcdev/pixelarticons/autoupdate`.</sub>
 
 ## v0.4.0
 
@@ -52,7 +52,7 @@ https://github.com/halfmage/pixelarticons/compare/v1.7.0...v1.8.0
 
 https://github.com/halfmage/pixelarticons/compare/v1.6.0...v1.7.0
 
-<sub>This `CHANGELOG.md` was automatic generated from `alexrintt/pixelarticons/autoupdate`.</sub>
+<sub>This `CHANGELOG.md` was automatic generated from `libsrcdev/pixelarticons/autoupdate`.</sub>
 
 ## v0.3.1
 

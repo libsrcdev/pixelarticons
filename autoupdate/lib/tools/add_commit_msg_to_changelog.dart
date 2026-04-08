@@ -25,7 +25,7 @@ Future<void> addCommitMsgToChangelog({
 
 $latestPixelarticonsReleaseBody
 
-<sub>This `CHANGELOG.md` was automatic generated from `alexrintt/pixelarticons/autoupdate`.</sub>
+<sub>This `CHANGELOG.md` was automatic generated from `libsrcdev/pixelarticons/autoupdate`.</sub>
 '''
       .split('\n')
       .toList();

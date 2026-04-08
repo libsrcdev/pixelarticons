@@ -1,6 +1,12 @@
 name: Generate Font and Publish
 on:
   workflow_dispatch:
+    inputs:
+      force_publish:
+        description: "Force publish even if no new upstream release"
+        required: false
+        type: boolean
+        default: false
   schedule:
     # Every 1st and 15st of each month. Basically the library update itself every 15 days
     - cron: "0 0 1,15 * *"
@@ -9,6 +15,22 @@ on:
 # Dash key identifiers (some-identifier) -> Required by GitHub action, it's not defined by us
 
 jobs:
+  test:
+    name: Run tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: dart-lang/setup-dart@v1
+      - uses: actions/setup-python@v4
+        with:
+          python-version: "3.9"
+
+      - name: Run autoupdate Dart tests
+        run: cd autoupdate && dart pub get && dart test && cd ..
+
+      - name: Run download Python tests
+        run: python3 -m unittest download.test_download -v
+
   check_if_there_is_a_new_release_update_available:
     name: Check if there's a new release update available
     runs-on: ubuntu-latest
@@ -27,8 +49,8 @@ jobs:
         run: dart run autoupdate/lib/has_new_release.dart
   publish_new_release:
     name: Publish new package release
-    needs: ["check_if_there_is_a_new_release_update_available"]
-    if: ${{ needs.check_if_there_is_a_new_release_update_available.outputs.update_available == 'true' }}
+    needs: ["test", "check_if_there_is_a_new_release_update_available"]
+    if: ${{ needs.check_if_there_is_a_new_release_update_available.outputs.update_available == 'true' || inputs.force_publish == true }}
     runs-on: ubuntu-latest
     permissions:
       contents: write

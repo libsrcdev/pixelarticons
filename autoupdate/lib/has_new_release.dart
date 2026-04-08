@@ -7,5 +7,13 @@ const kHasNewReleaseActionKey = 'update_available';
 Future<void> main() async {
   final bool hasUpdate = await hasUpdateAvailable();
 
-  stdout.write('::set-output name=$kHasNewReleaseActionKey::$hasUpdate');
+  final githubOutput = Platform.environment['GITHUB_OUTPUT'];
+  if (githubOutput != null) {
+    File(githubOutput)
+        .writeAsStringSync('$kHasNewReleaseActionKey=$hasUpdate\n',
+            mode: FileMode.append);
+  } else {
+    // Fallback for local execution
+    stdout.write('::set-output name=$kHasNewReleaseActionKey::$hasUpdate');
+  }
 }

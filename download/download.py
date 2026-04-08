@@ -12,7 +12,7 @@ REPOSITORY = f'{OWNER}/{REPO}'
 LATEST_RELEASE_ENDPOINT = f'https://api.github.com/repos/{REPOSITORY}/releases/latest'
 
 # Data of pixelarticons dart wrapper lib owner and repo
-LIB_OWNER = 'alexrintt'
+LIB_OWNER = 'libsrcdev'
 LIB_REPO = 'pixelarticons'
 LIB_REPOSITORY = f'{LIB_OWNER}/{LIB_REPO}'
 
