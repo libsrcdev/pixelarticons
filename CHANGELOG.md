@@ -1,3 +1,13 @@
+## v0.7.0
+
+<sub>_Automatic package roolup `v0.7.0` of Pixel Art Icons `v2.0.2`, source release available at https://github.com/halfmage/pixelarticons/releases/tag/v2.0.2 published at 2026-02-22T11:24:13Z._</sub>
+
+- fixed react generation after upgrade  acfc472
+
+https://github.com/halfmage/pixelarticons/compare/v2.0.1...v2.0.2
+
+<sub>This `CHANGELOG.md` was automatic generated from `alexrintt/pixelarticons/autoupdate`.</sub>
+
 ## v0.6.0
 
 <sub>_Automatic package roolup `v0.6.0` of Pixel Art Icons `v1.8.1`, source release available at https://github.com/halfmage/pixelarticons/releases/tag/v1.8.1 published at 2024-04-15T09:34:44Z._</sub>
