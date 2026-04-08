@@ -71,4 +71,4 @@ jobs:
         run: dart format .
 
       - name: Publish
-        run: dart pub publish --force
+        run: flutter pub publish --force
