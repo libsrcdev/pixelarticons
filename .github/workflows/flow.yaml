@@ -30,6 +30,9 @@ jobs:
     needs: ["check_if_there_is_a_new_release_update_available"]
     if: ${{ needs.check_if_there_is_a_new_release_update_available.outputs.update_available == 'true' }}
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      id-token: write
     steps:
       - uses: actions/checkout@v2
       - uses: dart-lang/setup-dart@v1
@@ -63,19 +66,6 @@ jobs:
 
       - name: Run fontify to generate the icons font (.ttf)
         run: dart pub global run fontify
-
-      - name: Create credentials file
-        run: echo $PUB_CREDENTIALS > ~/pub-credentials.json
-        env:
-          PUB_CREDENTIALS: ${{ secrets.PUB_CREDENTIALS }}
-
-      - name: Add credentials to Dart folder
-        run: |
-          mkdir -p ${XDG_CONFIG_HOME:-${HOME:-default}}/dart
-          touch ${XDG_CONFIG_HOME:-${HOME:-default}}/dart/pub-credentials.json
-          cp ~/pub-credentials.json ${XDG_CONFIG_HOME:-${HOME:-default}}/dart/pub-credentials.json
-        env:
-          PUB_CREDENTIALS: ${{ secrets.PUB_CREDENTIALS }}
 
       - name: Format generated files
         run: dart format .
