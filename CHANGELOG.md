@@ -1,3 +1,11 @@
+## v0.8.0
+
+<sub>_Automatic sync with halfmage/pixelarticons at commit `9d138de44477` (2026-02-22T11:23:36Z)._</sub>
+
+> 2.0.2
+
+<sub>This CHANGELOG.md was automatically generated.</sub>
+
 ## v0.7.0
 
 <sub>_Automatic package roolup `v0.7.0` of Pixel Art Icons `v2.0.2`, source release available at https://github.com/halfmage/pixelarticons/releases/tag/v2.0.2 published at 2026-02-22T11:24:13Z._</sub>

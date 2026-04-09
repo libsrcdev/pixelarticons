@@ -9,7 +9,7 @@ void main() {
 
       final content = file.readAsStringSync();
       expect(content, contains('name: pixelarticons'));
-      expect(content, contains('pixelarticons_version:'));
+      expect(content, contains('pixelarticons_commit:'));
       expect(content, contains("family: Pixel Art Icons"));
       expect(content, contains('asset: fonts/pixelarticons.otf'));
     });
@@ -72,10 +72,8 @@ void main() {
       expect(dir.existsSync(), isTrue,
           reason: 'SVG source files must be downloaded before running tests');
 
-      final svgs = dir
-          .listSync()
-          .where((f) => f.path.endsWith('.svg'))
-          .toList();
+      final svgs =
+          dir.listSync().where((f) => f.path.endsWith('.svg')).toList();
       expect(svgs.length, greaterThan(0));
     });
   });

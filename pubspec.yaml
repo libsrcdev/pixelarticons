@@ -1,8 +1,8 @@
 name: pixelarticons
 description: "Pixel Art Icons made simple for Flutter, powered by pixelarticons and fontify"
-version: 0.7.0
+version: 0.8.0
 homepage: https://github.com/libsrcdev/pixelarticons
-pixelarticons_version: v2.0.2
+pixelarticons_commit: 9d138de44477
 repository: https://github.com/libsrcdev/pixelarticons
 issue_tracker: https://github.com/libsrcdev/pixelarticons/issues
 documentation: https://github.com/libsrcdev/pixelarticons

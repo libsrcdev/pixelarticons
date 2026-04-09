@@ -1,0 +1,78 @@
+name: Sync and Generate Font
+on:
+  workflow_dispatch:
+    inputs:
+      force_publish:
+        description: "Force publish even if no new upstream changes"
+        required: false
+        type: boolean
+        default: false
+  schedule:
+    # Every 1st and 15th of each month
+    - cron: "0 0 1,15 * *"
+
+jobs:
+  test:
+    name: Run tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dart-lang/setup-dart@v1
+
+      - name: Run tool tests
+        run: cd tool && dart pub get && dart test
+
+  check-for-updates:
+    name: Check for upstream changes
+    runs-on: ubuntu-latest
+    outputs:
+      update_available: ${{ steps.check.outputs.update_available }}
+      new_version: ${{ steps.check.outputs.new_version }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dart-lang/setup-dart@v1
+
+      - name: Get tool dependencies
+        run: cd tool && dart pub get
+
+      - name: Check for updates
+        id: check
+        run: dart run tool/bin/pixelarticons_tool.dart --dry-run
+
+  build-and-tag:
+    name: Build and tag new release
+    needs: [test, check-for-updates]
+    if: ${{ needs.check-for-updates.outputs.update_available == 'true' || inputs.force_publish == true }}
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.TAG_PAT }}
+      - uses: subosito/flutter-action@v2
+
+      - name: Get tool dependencies
+        run: cd tool && dart pub get
+
+      - name: Download and process SVGs
+        run: dart run tool/bin/pixelarticons_tool.dart
+
+      - name: Install and run fontify
+        run: |
+          dart pub global activate fontify
+          dart pub global run fontify
+
+      - name: Format generated files
+        run: dart format .
+
+      - name: Read new version
+        id: version
+        run: |
+          VERSION=$(grep '^version:' pubspec.yaml | cut -d ' ' -f 2)
+          echo "version=$VERSION" >> "$GITHUB_OUTPUT"
+
+      - uses: EndBug/add-and-commit@v9
+        with:
+          message: "Automatic sync with pixelarticons upstream"
+          tag: "v${{ steps.version.outputs.version }}"

@@ -4,11 +4,10 @@
 pubspec.lock
 /release
 /.vscode
-/download
+/tool
 analysis_options.yaml
 .gitignore
 /.github
-/autoupdate
 
 # Miscellaneous
 
