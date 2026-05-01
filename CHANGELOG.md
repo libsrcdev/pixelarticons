@@ -1,3 +1,11 @@
+## v0.9.0
+
+<sub>_Automatic sync with halfmage/pixelarticons at commit `9ba699144651` (2026-04-15T14:14:20Z)._</sub>
+
+> 2.1.0
+
+<sub>This CHANGELOG.md was automatically generated.</sub>
+
 ## v0.8.0
 
 <sub>_Automatic sync with halfmage/pixelarticons at commit `9d138de44477` (2026-02-22T11:23:36Z)._</sub>
