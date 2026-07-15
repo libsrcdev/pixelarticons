@@ -1,3 +1,11 @@
+## v0.11.0
+
+<sub>_Automatic sync with halfmage/pixelarticons at commit `efb6e172f2ce` (2026-07-01T17:35:24Z)._</sub>
+
+> updated numbers and news block
+
+<sub>This CHANGELOG.md was automatically generated.</sub>
+
 ## v0.10.0
 
 <sub>_Automatic sync with halfmage/pixelarticons at commit `0768be4fbb0e` (2026-05-27T05:24:30Z)._</sub>
