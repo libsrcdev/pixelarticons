@@ -23,14 +23,8 @@ class HomePage extends StatelessWidget {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: const [
-                    Icon(
-                      Pixel.android,
-                      color: _kAndroidColor,
-                    ),
-                    Icon(
-                      Pixel.article,
-                      color: _kAndroidColor,
-                    ),
+                    Icon(Pixel.android, color: _kAndroidColor),
+                    Icon(Pixel.article, color: _kAndroidColor),
                   ],
                 ),
               ),
