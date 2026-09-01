@@ -1,3 +1,18 @@
+## v0.13.0
+
+<sub>_Automatic sync with halfmage/pixelarticons at commit `8275e0af7c16` (2026-08-16T15:33:28Z)._</sub>
+
+> Add an exports map so bare ESM imports resolve in Node
+
+import 'pixelarticons/react' failed in pure Node ESM as a directory
+import; only bundlers resolved it. The map keeps every documented
+deep path open: react/*, svg/*, fonts/* and package.json.
+
+Co-Authored-By: Claude Fable 5 <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_01EUrN6AkWgRDLJz8NRaM2qP
+
+<sub>This CHANGELOG.md was automatically generated.</sub>
+
 ## v0.12.0
 
 <sub>_Automatic sync with halfmage/pixelarticons at commit `0e0cc6525caa` (2026-08-12T13:21:39Z)._</sub>
