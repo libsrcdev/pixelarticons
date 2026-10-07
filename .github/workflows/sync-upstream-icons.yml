@@ -1,12 +1,12 @@
-name: Sync upstream icons and tag release
+name: Update icons and publish release
 on:
   workflow_dispatch:
     inputs:
       force_publish:
-        description: Force a release even without upstream changes
+        description: Publish a new version even if upstream icons are unchanged
         required: false
         type: boolean
-        default: false
+        default: true
   schedule:
     - cron: "0 0 1,15 * *"
 
@@ -24,6 +24,14 @@ jobs:
       update_available: ${{ steps.check.outputs.update_available }}
     steps:
       - uses: actions/checkout@v4
+      - name: Check release token
+        env:
+          TAG_PAT: ${{ secrets.TAG_PAT }}
+        run: |
+          if [ -z "$TAG_PAT" ]; then
+            echo '::error::Configure TAG_PAT with repository contents write access so the release tag can trigger pub.dev publishing.'
+            exit 1
+          fi
       - uses: dart-lang/setup-dart@v1
       - run: dart pub get --enforce-lockfile
         working-directory: tool
@@ -79,5 +87,7 @@ jobs:
           git add pubspec.yaml CHANGELOG.md lib/pixel.dart fonts/pixelarticons.otf
           git commit -m 'Automatic sync with pixelarticons upstream'
           git tag "v$VERSION"
-          git push origin HEAD
-          git push origin "v$VERSION"
+          git push --atomic origin HEAD "refs/tags/v$VERSION"
+          echo "### Release v$VERSION queued for publishing" >> "$GITHUB_STEP_SUMMARY"
+          echo "Icons were checked, artifacts generated, tests passed, and the release tag pushed." >> "$GITHUB_STEP_SUMMARY"
+          echo "Follow the [Publish package to pub.dev workflow](https://github.com/${{ github.repository }}/actions/workflows/publish-pubdev.yml) for the publishing result." >> "$GITHUB_STEP_SUMMARY"

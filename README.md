@@ -125,6 +125,22 @@ flutter build web
 
 ## CI and publishing
 
+To release manually, open **GitHub → Actions → Update icons and publish release →
+Run workflow**. Select the release branch and click **Run workflow**. By default,
+this checks upstream, downloads the current icons, regenerates the font and
+class, bumps the version, updates the changelog, runs validation, and pushes the
+commit and version tag together. The tag then starts **Publish package to
+pub.dev** automatically. Follow that second workflow to confirm publication.
+
+Uncheck **Publish a new version even if upstream icons are unchanged** to release
+only when new upstream changes are found. Scheduled runs on the 1st and 15th
+always release only when upstream changes are found.
+
+One-time setup: add the repository secret `TAG_PAT` with permission to write
+repository contents, and enable automated publishing on pub.dev for
+`libsrcdev/pixelarticons` with tag pattern `v{{version}}`. The release token must
+be authorized by any repository rules that restrict branch or tag pushes.
+
 - `validate.yml` analyzes and tests the tool and package, checks formatting, and builds
   the web example on pushes and pull requests.
 - `sync-upstream-icons.yml` checks upstream on the 1st and 15th of each month or on manual
