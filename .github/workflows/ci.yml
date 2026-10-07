@@ -1,0 +1,28 @@
+name: Validate package
+on:
+  push:
+    branches: [master, main]
+  pull_request:
+permissions:
+  contents: read
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+          cache: true
+      - run: flutter pub get
+      - run: dart pub get --enforce-lockfile
+        working-directory: tool
+      - run: dart format --output=none --set-exit-if-changed lib test tool/lib tool/bin tool/test example/lib
+      - run: flutter analyze
+      - run: dart analyze
+        working-directory: tool
+      - run: dart test
+        working-directory: tool
+      - run: flutter test
+      - run: flutter build web
+        working-directory: example

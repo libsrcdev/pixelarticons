@@ -1,15 +1,15 @@
 name: pixelarticons
-description: "Pixel Art Icons made simple for Flutter, powered by pixelarticons and fontify"
-version: 0.13.0
+description: "Pixel Art Icons made simple for Flutter, powered by pixelarticons"
+version: 0.14.0
 homepage: https://github.com/libsrcdev/pixelarticons
-pixelarticons_commit: 8275e0af7c16
+pixelarticons_commit: c9ecc2da61af
 repository: https://github.com/libsrcdev/pixelarticons
 issue_tracker: https://github.com/libsrcdev/pixelarticons/issues
 documentation: https://github.com/libsrcdev/pixelarticons
 
 environment:
-  sdk: ">=2.14.0 <3.0.0"
-  flutter: ">=1.17.0"
+  sdk: ">=3.8.0 <4.0.0"
+  flutter: ">=3.32.0"
 
 dependencies:
   flutter:
@@ -18,26 +18,10 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  lint: ^1.7.2
+  flutter_lints: ^6.0.0
 
 flutter:
   fonts:
     - family: Pixel Art Icons
       fonts:
         - asset: fonts/pixelarticons.otf
-
-fontify:
-  input_svg_dir: "release/svg/"
-  output_font_file: "fonts/pixelarticons.otf"
-
-  output_class_file: "lib/pixel.dart"
-  class_name: "Pixel"
-  indent: 2
-  package: pixelarticons
-
-  font_name: "Pixel Art Icons"
-  normalize: true
-  ignore_shapes: true
-
-  recursive: true
-  verbose: false

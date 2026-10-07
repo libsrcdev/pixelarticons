@@ -1,6 +1,6 @@
 # Pixel Art Icons package for Flutter
 
-<a href="https://pub.dartlang.org/packages/pixelarticons"><img src="https://img.shields.io/pub/v/pixelarticons.svg" /></a>
+<a href="https://pub.dev/packages/pixelarticons"><img src="https://img.shields.io/pub/v/pixelarticons.svg" /></a>
 
 This package provides a set of pixel art icons as font for Flutter, it can be used in the same way we use `Icons` class.
 
@@ -19,7 +19,7 @@ Icon set created by [@halfmage](https://github.com/halfmage), if you like this f
 
 ## Install the package
 
-You can check the latest version on [pub.dev/pixelarticons](https://pub.dartlang.org/packages/pixelarticons).
+You can check the latest version on [pub.dev/pixelarticons](https://pub.dev/packages/pixelarticons).
 
 ```yaml
 dependencies:
@@ -48,100 +48,100 @@ import 'package:pixelarticons/pixelarticons.dart';
 
 Be aware:
 
-- **Lower-case for all icons and no separators**, for example `card-plus` is written as `Pixel.cardplus`.
-- Icons that **starts with non-alpha characters**, like `4k`, `4k-box`, `4g` are prefixed with `k`.
-- Icons that are Dart keywords, like `switch` are prefix with `k` as well.
-
-So use `k4k`, `k4kbox`, `kswitch` instead.
+- **Lower-case for all icons and no separators**, for example `arrow-down` is written as `Pixel.arrowdown`.
+- Names starting with numbers and Dart keywords get a `k` prefix.
 
 Icon full list https://pixelarticons.com/free/.
 
 ```dart
-/// 4k icon:
-Icon(Pixel.k4k)
-
-/// switch icon:
-Icon(Pixel.kswitch)
-
-/// align-left icon:
-Icon(Pixel.alignleft);
+Icon(Pixel.android);
+Icon(Pixel.clock);
+Icon(Pixel.arrowdown);
 ```
 
 ---
 
-## How it works
+## Develop locally
 
-This library automatically syncs with the [pixelarticons](https://github.com/halfmage/pixelarticons) repository, generates a font, and publishes to pub.dev.
+Use Dart 3.8+ and Flutter 3.32+ for the package. Development of the example
+and locked release tool uses Flutter 3.47+ / Dart 3.13+. Android also requires
+JDK 17.
 
-### Automation tool
-
-All automation lives in [`tool/`](tool/), a standalone Dart CLI:
-
-```shell
-# Check for upstream changes (dry run)
-dart run tool/bin/pixelarticons_tool.dart --dry-run
-
-# Download and process SVGs
-dart run tool/bin/pixelarticons_tool.dart
-
-# Force re-download even if up to date
-dart run tool/bin/pixelarticons_tool.dart --no-cache
-```
-
-The tool:
-
-1. Fetches the latest commit hash from [`halfmage/pixelarticons`](https://github.com/halfmage/pixelarticons) master branch
-2. Compares it with the `pixelarticons_commit` key in `pubspec.yaml`
-3. If there's a new commit: downloads the repo zipball, extracts SVGs, applies Dart naming conventions (prefixing keywords and numeric names with `k`), and places them in `release/svg/`
-4. Bumps the package version and updates `CHANGELOG.md`
-
-### Font generation
-
-After the tool runs, [fontify](https://pub.dev/packages/fontify) generates the icon font and Dart class from the SVGs:
+The font and generated `Pixel` class are committed, so a fresh checkout works
+without downloading upstream icons or running the generator:
 
 ```shell
-dart pub global activate fontify
-dart pub global run fontify
+flutter pub get
+flutter analyze
+flutter test
+cd example
+flutter run -d chrome
 ```
 
-This reads from `release/svg/` and generates:
+The example also supports Android (`flutter run` with an Android device).
 
-- `fonts/pixelarticons.otf` — the icon font
-- `lib/pixel.dart` — the Dart class with `IconData` constants
+## Sync and generate icons
 
-The fontify configuration is in `pubspec.yaml` under the `fontify:` key.
-
-### CI/CD
-
-Two GitHub Actions workflows handle the automation:
-
-- **[`publish.yml`](.github/workflows/publish.yml)** — runs on cron (1st and 15th of each month) or manual dispatch. Checks for upstream changes, downloads SVGs, generates the font, commits, and pushes a version tag.
-- **[`release.yml`](.github/workflows/release.yml)** — triggered by the version tag push, publishes to pub.dev using [OIDC automated publishing](https://dart.dev/tools/pub/automated-publishing).
-
-### Run locally
-
-Required: [Dart SDK](https://dart.dev/get-dart) (>= 3.0.0) and [Flutter SDK](https://docs.flutter.dev/get-started/install).
+Automation lives in `tool/`, a standalone Dart package. Run its commands from
+that directory so Dart resolves the tool's own dependencies:
 
 ```shell
-# Install tool dependencies
-cd tool && dart pub get && cd ..
-
-# Run the tool
-dart run tool/bin/pixelarticons_tool.dart --no-cache
-
-# Generate font
-dart pub global activate fontify
-dart pub global run fontify
-
-# Format
-dart format .
+cd tool
+dart pub get
+dart run bin/pixelarticons_tool.dart --project-root .. --dry-run
+dart run bin/pixelarticons_tool.dart --project-root ..
 ```
 
-### Run tests
+A sync fetches the current upstream commit, downloads that exact revision,
+extracts the free SVGs, and generates both `fonts/pixelarticons.otf` and
+`lib/pixel.dart`. It uses the Dart 3 compatible `icon_font_generator` instead of
+the retired `fontify`. All icons retain their 24×24 grid and lowercase Dart
+names, including keyword and numeric prefixes.
+
+This breaking release uses only the current upstream icon set. Removed v1
+icons and historical spelling aliases are no longer available. Update your
+`Pixel` references to names in the current icon set.
+
+Glyph codepoints may change on regeneration; always use `Pixel` constants
+with the matching bundled font rather than storing numeric codepoints.
+
+`--no-cache` rebuilds even when the upstream commit matches, without bumping the
+version or adding a duplicate changelog entry. `--force-release` explicitly
+bumps the version for a release without upstream changes. `--dry-run` does not
+modify the project.
 
 ```shell
-cd tool && dart pub get && dart test
+# From tool/
+dart run bin/pixelarticons_tool.dart --project-root .. --no-cache
+dart analyze
+dart test
+cd ..
+dart format lib test tool/lib tool/bin tool/test example/lib
+flutter analyze
+flutter test
+cd example
+flutter build web
 ```
+
+## CI and publishing
+
+- `ci.yml` analyzes and tests the tool and package, checks formatting, and builds
+  the web example on pushes and pull requests.
+- `publish.yml` checks upstream on the 1st and 15th of each month or on manual
+  dispatch, generates and validates artifacts, then commits and tags a release.
+  Set the repository's `TAG_PAT` secret to a token authorized to push commits
+  and tags; this allows the tag push to trigger the release workflow.
+- `release.yml` validates and publishes tagged releases using pub.dev OIDC
+  automated publishing. Configure the trusted GitHub repository and tag pattern
+  in the pub.dev package's automated publishing settings.
+
+## Remote issues addressed
+
+- [#5: solid clock](https://github.com/libsrcdev/pixelarticons/issues/5): the current
+  path-based clock is bundled, with a raster test verifying its hollow interior
+  and visible outline.
+- [#6: new icons](https://github.com/libsrcdev/pixelarticons/issues/6): the generated
+  package includes 1,036 current free upstream icons. Paid upstream icons are not distributed here.
 
 ## Contribute
 

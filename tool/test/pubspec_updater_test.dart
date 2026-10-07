@@ -57,6 +57,17 @@ dependencies:
   });
 
   group('setKey', () {
+    test('preserves comments and unrelated YAML exactly', () {
+      updater.writeContent('# Keep this comment\n$samplePubspec\nempty_key:');
+      updater.setKey('version', '0.7.0');
+      expect(
+        updater.readContent(),
+        '# Keep this comment\n${samplePubspec.replaceFirst("version: 0.6.0", "version: 0.7.0")}\nempty_key:',
+      );
+      updater.setKey('empty_key', 'value');
+      expect(updater.getKey<String>('empty_key'), 'value');
+    });
+
     test('updates version', () {
       updater.setKey('version', '0.7.0');
       expect(updater.getKey<String>('version'), equals('0.7.0'));

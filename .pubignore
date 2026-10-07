@@ -1,73 +1,20 @@
-/svg
-.dart_tool
-.packages
-pubspec.lock
-/release
-/.vscode
-/tool
-analysis_options.yaml
-.gitignore
-/.github
-
-# Miscellaneous
-
-_.class
-_.log
-_.pyc
-_.swp
-.DS_Store
-.atom/
-.buildlog/
-.history
-.svn/
-
-# IntelliJ related
-
-_.iml
-_.ipr
-_.iws
-.idea/
-_/\*\*/local.properties
-loca.properties
-
-# The .vscode folder contains launch configuration and tasks you configure in
-
-# VS Code which you may wish to be included in version control, so this line
-
-# is commented out by default.
-
-#.vscode/
-
-\*/\*\*/.metadata
-.metadata
-
-# Flutter/Dart/Pub related
-
-**/doc/api/
-**/ios/Flutter/.last_build_id
-.dart_tool/
-.flutter-plugins
-.flutter-plugins-dependencies
-.packages
-.pub-cache/
-.pub/
-/build/
-\*/\*\*/build
-
-# Web related
-
-lib/generated_plugin_registrant.dart
-
-# Symbolication related
-
-app.\*.symbols
-
-# Obfuscation related
-
-app.\*.map.json
-
-# Android Studio will place build artifacts here
-
-/android/app/debug
-/android/app/profile
-/android/app/release
+/.github/
+/.claude/
+/.codex/
+/.agents/
+/tool/
+/release/
+/.vscode/
+/.gitignore
+/.pubignore
+**/.dart_tool/
+**/build/
+**/pubspec.lock
+**/.metadata
+**/local.properties
+**/analysis_options.yaml
+**/.flutter-plugins*
+**/.packages
+**/.DS_Store
+**/*.iml
+**/.idea/

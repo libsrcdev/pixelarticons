@@ -5,27 +5,14 @@ import 'package:path/path.dart' as p;
 
 import 'constants.dart';
 
-String processFilename(String filename) {
-  final stem = p.basenameWithoutExtension(filename);
-  if (!RegExp(r'^[a-zA-Z]').hasMatch(filename) || dartKeywords.contains(stem)) {
-    return 'k$filename';
-  }
-  return filename;
-}
-
-Future<int> extractAndProcessSvgs(
+Future<int> extractSvgs(
   List<int> zipBytes, {
   String outputDir = releaseSvgDir,
 }) async {
   final archive = ZipDecoder().decodeBytes(zipBytes);
   final outDir = Directory(outputDir);
 
-  if (outDir.existsSync()) {
-    outDir.deleteSync(recursive: true);
-  }
-  outDir.createSync(recursive: true);
-
-  var count = 0;
+  final files = <String, List<int>>{};
 
   for (final entry in archive) {
     if (entry.isFile && entry.name.endsWith('.svg')) {
@@ -40,20 +27,25 @@ Future<int> extractAndProcessSvgs(
       if (svgDirIndex != parts.length - 2) continue;
 
       final originalName = parts.last;
-      final processedName = processFilename(originalName);
-      final outFile = File(p.join(outputDir, processedName));
-
-      outFile.writeAsBytesSync(entry.content as List<int>);
-      count++;
+      if (files.containsKey(originalName)) {
+        throw FormatException('Duplicate SVG filename: $originalName');
+      }
+      files[originalName] = entry.content;
     }
   }
 
-  if (count == 0) {
+  if (files.isEmpty) {
     throw Exception(
       'No SVG files found in zipball. '
       'Expected structure: */svg/*.svg',
     );
   }
 
-  return count;
+  // Validate the archive before replacing the previous source set.
+  if (outDir.existsSync()) outDir.deleteSync(recursive: true);
+  outDir.createSync(recursive: true);
+  for (final file in files.entries) {
+    File(p.join(outputDir, file.key)).writeAsBytesSync(file.value);
+  }
+  return files.length;
 }

@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:pixelarticons/pixelarticons.dart';
 
 void main() {
   runApp(const HomePage());
 }
 
 class HomePage extends StatelessWidget {
-  const HomePage({Key? key}) : super(key: key);
+  const HomePage({super.key});
 
   static const _kAndroidColor = Color(0xFF3ADD85);
   static const _kBackgroundColor = Color(0xFF000000);
@@ -25,6 +26,7 @@ class HomePage extends StatelessWidget {
                   children: const [
                     Icon(Pixel.android, color: _kAndroidColor),
                     Icon(Pixel.article, color: _kAndroidColor),
+                    Icon(Pixel.clock, color: _kAndroidColor),
                   ],
                 ),
               ),

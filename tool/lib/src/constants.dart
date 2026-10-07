@@ -44,7 +44,7 @@ const Set<String> dartKeywords = {
   'operator',
   'var',
   'covariant',
-  'Function',
+  'function',
   'part',
   'void',
   'default',
@@ -68,8 +68,6 @@ const String upstreamOwner = 'halfmage';
 const String upstreamRepo = 'pixelarticons';
 const String commitsEndpoint =
     'https://api.github.com/repos/$upstreamOwner/$upstreamRepo/commits/master';
-const String zipballEndpoint =
-    'https://api.github.com/repos/$upstreamOwner/$upstreamRepo/zipball/master';
 const String releaseSvgDir = 'release/svg';
 const String pubspecCommitKey = 'pixelarticons_commit';
 const String pubspecVersionKey = 'version';

@@ -14,7 +14,8 @@ void updateChangelog({
   final shortHash = commitHash.substring(0, 12);
   final existing = file.existsSync() ? file.readAsStringSync() : '';
 
-  final entry = '''
+  final entry =
+      '''
 ## v$packageVersion
 
 <sub>_Automatic sync with halfmage/pixelarticons at commit `$shortHash` ($commitDate)._</sub>

@@ -1,3 +1,20 @@
+## v0.14.0
+
+- Remove all legacy SVGs, compatibility aliases, unused helpers, and duplicated configuration.
+- Compact the generated icon class and streamline the sync workflow.
+- Support Dart 3 and modern Flutter.
+- Replace fontify with a pinned Dart 3 compatible font generator.
+- Bundle the generated class and font for working fresh checkouts.
+- Breaking: use only 1,036 current free upstream icons; removed v1 names are no longer available.
+- Fix the hollow clock rendering and add a pixel regression test.
+- Modernize the Android example, add a web example, and validate releases in CI.
+
+<sub>_Automatic sync with halfmage/pixelarticons at commit `c9ecc2da61af` (2026-10-06T09:24:49Z)._</sub>
+
+> 2.4.2
+
+<sub>This CHANGELOG.md was automatically generated.</sub>
+
 ## v0.13.0
 
 <sub>_Automatic sync with halfmage/pixelarticons at commit `8275e0af7c16` (2026-08-16T15:33:28Z)._</sub>

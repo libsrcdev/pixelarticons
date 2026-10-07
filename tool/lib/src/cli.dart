@@ -12,6 +12,12 @@ ArgParser buildParser() {
       help: 'Force re-download even if commit hash matches',
       defaultsTo: false,
     )
+    ..addFlag(
+      'force-release',
+      help: 'Bump the version even without upstream changes',
+      defaultsTo: false,
+      negatable: false,
+    )
     ..addOption(
       'project-root',
       help: 'Path to the pixelarticons project root',

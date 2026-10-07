@@ -35,15 +35,12 @@ class PubspecUpdater {
       const separator = ':';
       final parts = line.split(separator);
       final k = parts.take(1).join().trim();
-      final v = parts.skip(1).join(separator).trim();
-
-      if (v.isEmpty) return line;
 
       if (k == key) {
         found = true;
         return '$key: $value';
       }
-      return '$k: $v';
+      return line;
     }).toList();
 
     // If key wasn't found, add it after the last top-level key: value line

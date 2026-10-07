@@ -1,4 +1,4 @@
-library pixelarticons;
+/// Pixel art icons for Flutter.
+library;
 
-/// Generated at build time
 export './pixel.dart';

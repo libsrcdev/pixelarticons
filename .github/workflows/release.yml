@@ -11,5 +11,12 @@ jobs:
       id-token: write
     steps:
       - uses: actions/checkout@v4
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+      - run: flutter pub get
+      - run: flutter analyze
+      - run: flutter test
+      # setup-dart configures the pub.dev OIDC token.
       - uses: dart-lang/setup-dart@v1
       - run: dart pub publish --force

@@ -1,3 +1,11 @@
-## Example
+# Pixel Art Icons example
 
-Check on `lib/main.dart` how to use the library
+From this directory:
+
+```shell
+flutter pub get
+flutter run -d chrome
+```
+
+For Android, use Flutter 3.47+ and JDK 17, connect an Android device, and run
+`flutter run`. The example displays Android, article, and hollow clock icons.
