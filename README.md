@@ -132,9 +132,8 @@ class, bumps the version, updates the changelog, runs validation, and pushes the
 commit and version tag together. The tag then starts **Publish package to
 pub.dev** automatically. Follow that second workflow to confirm publication.
 
-Uncheck **Publish a new version even if upstream icons are unchanged** to release
-only when new upstream changes are found. Scheduled runs on the 1st and 15th
-always release only when upstream changes are found.
+Manual runs always create a new version, even when upstream icons are unchanged.
+Scheduled runs on the 1st and 15th only release when upstream changes are found.
 
 One-time setup: add the repository secret `TAG_PAT` with permission to write
 repository contents, and enable automated publishing on pub.dev for

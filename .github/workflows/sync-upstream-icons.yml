@@ -1,12 +1,6 @@
 name: Update icons and publish release
 on:
   workflow_dispatch:
-    inputs:
-      force_publish:
-        description: Publish a new version even if upstream icons are unchanged
-        required: false
-        type: boolean
-        default: true
   schedule:
     - cron: "0 0 1,15 * *"
 
@@ -49,7 +43,7 @@ jobs:
   build-and-tag:
     name: Generate and tag release
     needs: check
-    if: ${{ needs.check.outputs.update_available == 'true' || inputs.force_publish == true }}
+    if: ${{ needs.check.outputs.update_available == 'true' || github.event_name == 'workflow_dispatch' }}
     runs-on: ubuntu-latest
     permissions:
       contents: write
@@ -67,7 +61,7 @@ jobs:
         working-directory: tool
         env:
           GITHUB_TOKEN: ${{ github.token }}
-          FORCE_RELEASE: ${{ inputs.force_publish }}
+          FORCE_RELEASE: ${{ github.event_name == 'workflow_dispatch' }}
         run: |
           if [ "$FORCE_RELEASE" = "true" ]; then
             dart run bin/pixelarticons_tool.dart --project-root .. --force-release
