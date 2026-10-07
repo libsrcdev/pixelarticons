@@ -19,6 +19,9 @@ jobs:
         with:
           channel: stable
       - run: flutter pub get
+      - name: Resolve release tool dependencies
+        run: dart pub get --enforce-lockfile
+        working-directory: tool
       - run: flutter analyze
       - run: flutter test
       # setup-dart configures the pub.dev OIDC token.
