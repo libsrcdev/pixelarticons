@@ -125,13 +125,13 @@ flutter build web
 
 ## CI and publishing
 
-- `ci.yml` analyzes and tests the tool and package, checks formatting, and builds
+- `validate.yml` analyzes and tests the tool and package, checks formatting, and builds
   the web example on pushes and pull requests.
-- `publish.yml` checks upstream on the 1st and 15th of each month or on manual
+- `sync-upstream-icons.yml` checks upstream on the 1st and 15th of each month or on manual
   dispatch, generates and validates artifacts, then commits and tags a release.
   Set the repository's `TAG_PAT` secret to a token authorized to push commits
   and tags; this allows the tag push to trigger the release workflow.
-- `release.yml` validates and publishes tagged releases using pub.dev OIDC
+- `publish-pubdev.yml` validates and publishes tagged releases using pub.dev OIDC
   automated publishing. Configure the trusted GitHub repository and tag pattern
   in the pub.dev package's automated publishing settings.
 

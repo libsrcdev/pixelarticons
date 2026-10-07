@@ -1,4 +1,4 @@
-name: Sync and Generate Font
+name: Sync upstream icons and tag release
 on:
   workflow_dispatch:
     inputs:
@@ -14,7 +14,7 @@ permissions:
   contents: read
 concurrency:
   group: upstream-sync
-  cancel-in-progress: false
+  cancel-in-progress: true
 
 jobs:
   check:
