@@ -1,3 +1,11 @@
+## v0.15.0
+
+<sub>_Automatic sync with halfmage/pixelarticons at commit `c9ecc2da61af` (2026-10-06T09:24:49Z)._</sub>
+
+> 2.4.2
+
+<sub>This CHANGELOG.md was automatically generated.</sub>
+
 ## v0.14.0
 
 - Remove all legacy SVGs, compatibility aliases, unused helpers, and duplicated configuration.
