@@ -19,9 +19,25 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^6.0.0
+  rps: ^0.10.1
+  flutter_svg: 2.2.3
+
+scripts:
+  format: dart format lib test tool/lib tool/bin tool/test example/lib
+  analyze: flutter analyze
+  test: flutter test
+  pixels: flutter test test/svg_font_comparison.dart
+  sources: cd tool && dart pub get && dart run bin/download_test_sources.dart
+  example: cd example && flutter pub get && flutter run
+  build:
+    web: cd example && flutter pub get && flutter build web
+  tool:
+    analyze: cd tool && dart pub get && dart analyze
+    test: cd tool && dart pub get && dart test
+  sync: cd tool && dart pub get && dart run bin/pixelarticons_tool.dart --project-root ..
 
 flutter:
   fonts:
     - family: Pixel Art Icons
       fonts:
-        - asset: fonts/pixelarticons.otf
+        - asset: fonts/pixelarticons.ttf

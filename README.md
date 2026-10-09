@@ -80,6 +80,19 @@ flutter run -d chrome
 
 The example also supports Android (`flutter run` with an Android device).
 
+Development shortcuts use `rps` from the package's dev dependencies:
+
+```shell
+dart run rps format
+dart run rps analyze
+dart run rps test
+dart run rps example -d chrome
+dart run rps build web
+dart run rps tool analyze
+dart run rps tool test
+dart run rps sync --dry-run
+```
+
 ## Sync and generate icons
 
 Automation lives in `tool/`, a standalone Dart package. Run its commands from
@@ -87,16 +100,26 @@ that directory so Dart resolves the tool's own dependencies:
 
 ```shell
 cd tool
+npm ci
 dart pub get
 dart run bin/pixelarticons_tool.dart --project-root .. --dry-run
 dart run bin/pixelarticons_tool.dart --project-root ..
 ```
 
 A sync fetches the current upstream commit, downloads that exact revision,
-extracts the free SVGs, and generates both `fonts/pixelarticons.otf` and
-`lib/pixel.dart`. It uses the Dart 3 compatible `icon_font_generator` instead of
-the retired `fontify`. All icons retain their 24×24 grid and lowercase Dart
-names, including keyword and numeric prefixes.
+extracts the free SVGs, and generates both `fonts/pixelarticons.ttf` and
+`lib/pixel.dart`. Font conversion uses the npm package
+[`svgtofont`](https://github.com/jaywcjlove/svgtofont). Node.js 22 or newer and
+`npm ci` in `tool/` are required for generation. All icons retain their 24×24
+grid and lowercase Dart names, including keyword and numeric prefixes.
+Codepoints are assigned explicitly in sorted Dart-name order, starting at E000.
+Paper.js parses SVG paths and Clipper unions their filled contours before
+`svgtofont` conversion, preserving touching edges, overlapping shapes, and
+intentional holes. Each element’s fill rule is resolved before combining it
+with other elements. Only temporary generation copies are flattened. The current upstream sources contain
+untransformed straight paths; unsupported elements or curves cause generation
+to fail explicitly.
+
 
 This breaking release uses only the current upstream icon set. Removed v1
 icons and historical spelling aliases are no longer available. Update your
@@ -122,6 +145,40 @@ flutter test
 cd example
 flutter build web
 ```
+
+## Compare every SVG against the font
+
+Download the exact SVG revision pinned in `pubspec.yaml`, then render every SVG
+independently with `flutter_svg` and every bundled glyph with Flutter's `Icon`:
+
+```shell
+flutter pub get
+dart run rps sources
+dart run rps pixels
+```
+
+The comparison renders on a fixed 240×240 transparent canvas with white fills,
+then checks the painted/empty state at the center of each cell in the original
+24×24 grid (alpha ≥ 128 means painted). It fails if any of the 576 cells differs.
+Sampling cell centers avoids antialiasing at grid edges while still detecting
+missing fills, extra fills, holes, and shifts that change cell occupancy. This
+checks pixel art cell occupancy, not exact outlines or subcell details. No
+alignment correction or image resizing is applied after rendering. SVG names
+and font names must match completely.
+
+Results are saved in `build/icon-comparison/report.json`, including zero-based
+coordinates and painted states for every mismatched cell. Open
+`build/icon-comparison/index.html` for a searchable visual report. Grid images
+show binary occupancy; red marks cells missing in the font and blue marks extra
+cells. The report also retains exact raster differences as diagnostics; enable
+“Show icons with raster differences too” to inspect them. Those differences do
+not fail the grid comparison.
+
+Sources are downloaded without changing the font, generated class, version, or
+changelog. This explicit diagnostic is separate from the ordinary `flutter test`
+suite so a fresh checkout needs no upstream download.
+The manual **Compare SVGs and font grid** GitHub Actions workflow runs the same
+check and uploads the report even when differences make the check fail.
 
 ## CI and publishing
 

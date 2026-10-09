@@ -57,6 +57,15 @@ jobs:
           cache: true
       - run: dart pub get --enforce-lockfile
         working-directory: tool
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+          cache-dependency-path: tool/package-lock.json
+      - run: npm ci
+        working-directory: tool
+      - run: npm test
+        working-directory: tool
       - name: Sync icons and generate package artifacts
         working-directory: tool
         env:
@@ -78,7 +87,7 @@ jobs:
           VERSION=$(sed -n 's/^version: //p' pubspec.yaml)
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add pubspec.yaml CHANGELOG.md lib/pixel.dart fonts/pixelarticons.otf
+          git add pubspec.yaml CHANGELOG.md lib/pixel.dart fonts/
           git commit -m 'Automatic sync with pixelarticons upstream'
           git tag "v$VERSION"
           git push --atomic origin HEAD "refs/tags/v$VERSION"

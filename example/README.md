@@ -1,11 +1,16 @@
 # Pixel Art Icons example
 
-From this directory:
+A searchable, responsive gallery of every icon in the package, grouped into
+labeled categories. Combine category and style chips (Default, Sharp, Solid, or Glyph) with name
+search to narrow the gallery. Each tile shows
+its icon and Dart name; hover or long-press to see the `Pixel` reference.
+
+From the repository root:
 
 ```shell
 flutter pub get
-flutter run -d chrome
+dart run rps example -d chrome
 ```
 
-For Android, use Flutter 3.47+ and JDK 17, connect an Android device, and run
-`flutter run`. The example displays Android, article, and hollow clock icons.
+Or from this directory, run `flutter pub get` followed by `flutter run`.
+For Android, use Flutter 3.47+ and JDK 17 with a connected Android device.

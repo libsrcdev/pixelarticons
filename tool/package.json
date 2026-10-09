@@ -1,0 +1,17 @@
+{
+  "name": "pixelarticons-font-tool",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=22"
+  },
+  "dependencies": {
+    "@xmldom/xmldom": "0.9.12",
+    "clipper-lib": "6.4.2",
+    "paper": "0.12.18",
+    "svgtofont": "6.5.3"
+  },
+  "scripts": {
+    "test": "node --test test/*_test.mjs"
+  }
+}

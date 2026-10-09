@@ -12,7 +12,6 @@ dependencies:
   archive: ^4.0.2
   args: ^2.5.0
   path: ^1.9.0
-  icon_font_generator: 4.1.0
   dart_style: 3.1.13
 
 dev_dependencies:
