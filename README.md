@@ -11,9 +11,6 @@ Icon set created by [@halfmage](https://github.com/halfmage), if you like this f
 
 Flutter library created by [alexcastro.dev](https://alexcastro.dev). A [libsrc.dev](https://libsrc.dev) project.
 
-- Project contact: [pixelarticons@libsrc.dev](mailto:pixelarticons@libsrc.dev)
-- Personal contact: [contact@alexcastro.dev](mailto:contact@alexcastro.dev)
-
 <details>
   <summary>Show preview</summary>
 
