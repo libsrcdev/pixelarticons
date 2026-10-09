@@ -80,17 +80,19 @@ flutter run -d chrome
 
 The example also supports Android (`flutter run` with an Android device).
 
-Development shortcuts use `rps` from the package's dev dependencies:
+Development shortcuts use globally installed `rps`. Install it once with
+`dart pub global activate rps`, and ensure Dart's pub cache `bin` directory is
+on your `PATH`:
 
 ```shell
-dart run rps format
-dart run rps analyze
-dart run rps test
-dart run rps example -d chrome
-dart run rps build web
-dart run rps tool analyze
-dart run rps tool test
-dart run rps sync --dry-run
+rps format
+rps analyze
+rps test
+rps example -d chrome
+rps build web
+rps tool analyze
+rps tool test
+rps sync --dry-run
 ```
 
 ## Sync and generate icons
@@ -153,8 +155,8 @@ independently with `flutter_svg` and every bundled glyph with Flutter's `Icon`:
 
 ```shell
 flutter pub get
-dart run rps sources
-dart run rps pixels
+rps sources
+rps pixels
 ```
 
 The comparison renders on a fixed 240×240 transparent canvas with white fills,

@@ -9,7 +9,7 @@ From the repository root:
 
 ```shell
 flutter pub get
-dart run rps example -d chrome
+rps example -d chrome
 ```
 
 Or from this directory, run `flutter pub get` followed by `flutter run`.

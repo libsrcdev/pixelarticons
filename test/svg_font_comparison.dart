@@ -9,7 +9,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:pixelarticons/pixelarticons.dart';
 
-// Explicitly run via `dart run rps pixels`; regular tests need no download.
+// Explicitly run via `rps pixels`; regular tests need no download.
 const _gridSize = 24;
 const _cellSize = 10;
 const _size = _gridSize * _cellSize;
@@ -23,7 +23,7 @@ void main() {
     expect(
       sources.existsSync(),
       isTrue,
-      reason: 'Run dart run rps sources before the pixel comparison.',
+      reason: 'Run rps sources before the pixel comparison.',
     );
     final pinned = RegExp(
       r'^pixelarticons_commit: (.+)$',
