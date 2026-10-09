@@ -10,8 +10,14 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  flutter_markdown_plus: ^1.0.12
+  flutter_svg: ^2.3.0
+  go_router: ^18.0.2
+  highlight: ^0.7.0
+  markdown: ^7.3.1
   pixelarticons:
     path: ../
+  url_launcher: ^6.3.3
 
 dev_dependencies:
   flutter_test:
@@ -20,3 +26,13 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
+  assets:
+    - assets/docs/getting_started.md
+    - assets/icon_vectors.json
+  fonts:
+    - family: Share Tech
+      fonts:
+        - asset: assets/fonts/share-tech-regular.ttf
+    - family: JetBrains Mono
+      fonts:
+        - asset: assets/fonts/JetBrainsMono-Regular.ttf

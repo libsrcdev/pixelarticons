@@ -9,6 +9,11 @@ This package provides a set of pixel art icons as font for Flutter, it can be us
 
 Icon set created by [@halfmage](https://github.com/halfmage), if you like this free icon set you will also like the [premium ones](https://halfmage.gumroad.com/).
 
+Flutter library created by [alexcastro.dev](https://alexcastro.dev). A [libsrc.dev](https://libsrc.dev) project.
+
+- Project contact: [pixelarticons@libsrc.dev](mailto:pixelarticons@libsrc.dev)
+- Personal contact: [contact@alexcastro.dev](mailto:contact@alexcastro.dev)
+
 <details>
   <summary>Show preview</summary>
 
@@ -110,7 +115,9 @@ dart run bin/pixelarticons_tool.dart --project-root ..
 
 A sync fetches the current upstream commit, downloads that exact revision,
 extracts the free SVGs, and generates both `fonts/pixelarticons.ttf` and
-`lib/pixel.dart`. Font conversion uses the npm package
+`lib/pixel.dart`. The original SVGs are also bundled in
+`example/assets/icon_vectors.json` for the demo’s previews and copy actions.
+Font conversion uses the npm package
 [`svgtofont`](https://github.com/jaywcjlove/svgtofont). Node.js 22 or newer and
 `npm ci` in `tool/` are required for generation. All icons retain their 24×24
 grid and lowercase Dart names, including keyword and numeric prefixes.

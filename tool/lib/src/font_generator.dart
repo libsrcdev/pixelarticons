@@ -98,5 +98,10 @@ int generateFont({required String projectRoot}) {
       pageWidth: 160,
     ).format(code.toString()),
   );
+  final exampleAssets = Directory(p.join(projectRoot, 'example/assets'));
+  exampleAssets.createSync(recursive: true);
+  File(p.join(exampleAssets.path, 'icon_vectors.json')).writeAsStringSync(
+    '${const JsonEncoder.withIndent('  ').convert({for (final name in sortedNames) name: svgMap[name]!})}\n',
+  );
   return sortedNames.length;
 }

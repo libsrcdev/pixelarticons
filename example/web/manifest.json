@@ -1,11 +1,11 @@
 {
-    "name": "example",
-    "short_name": "example",
+    "name": "Pixel Art Icons",
+    "short_name": "Pixel Art Icons",
     "start_url": ".",
     "display": "standalone",
-    "background_color": "#0175C2",
-    "theme_color": "#0175C2",
-    "description": "Pixel Art Icons Flutter example.",
+    "background_color": "#f5f4ee",
+    "theme_color": "#f5f4ee",
+    "description": "Pixel Art Icons for Flutter: demo and documentation.",
     "orientation": "portrait-primary",
     "prefer_related_applications": false,
     "icons": [
