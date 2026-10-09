@@ -205,6 +205,9 @@ be authorized by any repository rules that restrict branch or tag pushes.
 
 - `validate.yml` analyzes and tests the tool and package, checks formatting, and builds
   the web example on pushes and pull requests.
+- [`publish-website.yml`](.github/workflows/publish-website.yml) tests, builds, and
+  deploys the demo and documentation website to GitHub Pages on pushes to `main`
+  or manual dispatch. See the [website publishing setup](example/README.md#publish-the-website).
 - `sync-upstream-icons.yml` checks upstream on the 1st and 15th of each month or on manual
   dispatch, generates and validates artifacts, then commits and tags a release.
   Set the repository's `TAG_PAT` secret to a token authorized to push commits
